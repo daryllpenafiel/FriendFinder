@@ -6,12 +6,35 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Tajawal:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 </head>
 
 <body>
 
-    <h1> Welcome to the Home Page! </h1>
+    <div class="container">
+
+        <div class="startbox">
+            <br><br><br>
+            <h2> Lookin' for a friend? Welcome to Friend Finder!</h2>
+            <h4> Answer the following questions so we can let you know your matches!</h4>
+          
+            <div class="startbutton">
+                <input class="btn btn-primary" value="Start">
+            </div><br>
+
+        </div>
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script>
+
+        $(".startbutton").on("click",function(){
+        event.preventDefault();
+        document.location.href='./survey.html';
+        }); 
+
+    </script>
 
 </body>
 </html>
