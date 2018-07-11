@@ -261,36 +261,22 @@
                                 })
                                 .then(function (friendsData) {
 
-                                    // Here we are logging the URL so we have access to it for troubleshooting
-                                    console.log("------------------------------------");
-                                    console.log("URL: " + currentURL + "/api/waitlist");
-                                    console.log("------------------------------------");
 
-                                    // Here we then log the NYTData to console, where it will show up as an object.
-                                    console.log(friendsData);
-                                    console.log("------------------------------------");
-
-                                    // Loop through and display each of the customers
                                     for (var i = 0; i < friendsData.length; i++) {
+                                        
+                                        var arr1 = newFriend.scores;
+                                        var arr2 = friendsData[i].scores;
+                                        var arr3 = [];
+                                        var totalDifference = (arr3[0] + arr3[1] + arr3[2] + arr3[3] +arr3[4] + arr3[5] + arr3[6] + arr3[7] + arr3[8] + arr3[9]);
 
-                                        console.log(friendsData[i]);
-
-                                       /* // Create the HTML Well (Section) and Add the table content for each reserved table
-                                        var waitlistSection = $("<div>");
-                                        waitlistSection.addClass("well");
-                                        waitlistSection.attr("id", "waitlistWell-" + i + 1);
-                                        $("#waitlistSection").append(waitlistSection);
-
-                                        var tableNumber = i + 1;
-
-                                        // Then display the remaining fields in the HTML (Section Name, Date, URL)
-                                        $("#waitlistWell-" + i + 1).append(
-                                            "<h2><span class='label label-primary'>" + tableNumber +
-                                            "</span> | " + waitlistData[i].customerID + "</h2>");*/
+                                            for (let i = 0; i < arr1.length; i++) {
+                                                arr3.push(Math.abs(arr1[i] - arr2[i]));
+                                            }
+                                        console.log(friendsData[i].name + "difference: " + totalDifference);
                                     }
                                 });
                         }
-                        
+
                         compareFriends();
                         displayResults();
                     };
