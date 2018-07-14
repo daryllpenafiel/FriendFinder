@@ -255,9 +255,9 @@
                                 method: "GET"
                             })
                             .then(function (friendsData) {
+                                var computedObjects = [];
 
                                 for (var i = 0; i < friendsData.length; i++) {
-
                                     var arr1 = newFriend.scores;
                                     var arr2 = friendsData[i].scores;
                                     var arr3 = [];
@@ -270,12 +270,30 @@
                                         return a + b;
                                     }, 0);
 
-                                    console.log(friendsData[i].name + " difference: " + totalDifference);
+                                    tmp = {
+                                        'name': friendsData[i].name,
+                                        'image': friendsData[i].photo,
+                                        'difference': totalDifference
+                                    }
+
+                                    computedObjects.push(tmp);
                                 }
 
-                                $("#matchName").text(friendsData[0].name);
-                                $("#matchImage").attr("src", friendsData[0].photo);
-                                console.log(friendsData[0].photo);
+                                console.log(computedObjects);
+
+                                //look for minimum difference in objects
+                                var res = Math.min.apply(Math, computedObjects.map(function (o) {
+                                    return o.difference;
+                                }))
+
+                                var obj = computedObjects.find(function (o) {
+                                    return o.difference == res;
+                                })
+
+                                console.log(obj);
+
+                                $("#matchName").text(obj.name);
+                                $("#matchImage").attr("src", obj.image);
 
                                 $(".resultbox").show();
                                 $(".surveyquestions").hide();
@@ -287,36 +305,6 @@
 
                         });
                     };
-
-
-                    //-------------------------------------------------------------------------------
-
-                    /*
-                    function findObjectByKey(array, key, value) {
-                        for (var i = 0; i < array.length; i++) {
-                            if (array[i][key] === value) {
-                                return array[i];
-                            }
-                        }
-                        return null;
-
-                    Potential solutions:
-                    1) Push differences to array then begin counting from 0 going up to see the closest match then return that object
-                    2) Push differences to array then sort from largest to smallest, then use index 0 of that array to look for the object containing that value// index of?
-                    3) Count beginning from 0 going up then as soon as the values match, return that object (do while?)
-
-                    do {
-                        i++
-                    } while (arr[0] !== i);
-            
-
-                    if (i !== diffArr[0]) {
-                        i++
-                    }
-
-                    for (i=0; diffArr[0] !== i; i++) {
-
-                    }*/
 
                     compareFriends();
 

@@ -1,6 +1,6 @@
 var friendsArray = [{
-        name: "Ahmed",
-        photo: "https://marriedbiography.com/wp-content/uploads/2017/03/brock-lesnar.jpg",
+        name: "David Chang",
+        photo: "https://flavorwire.files.wordpress.com/2015/01/changdeadramen.jpg?w=652",
         scores: [
             5,
             1,
@@ -15,8 +15,8 @@ var friendsArray = [{
         ]
     },
     {
-        "name": "DP",
-        "photo": "http://google.com",
+        "name": "John Cena",
+        "photo": "https://i0.wp.com/www.playerattack.com/imagery/2018/01/JohnCena-USFlag.jpg?ssl=1",
         "scores": [
             "2",
             "2",
@@ -31,8 +31,8 @@ var friendsArray = [{
         ]
     },
     {
-        "name": "Daryll",
-        "photo": "http://google.com",
+        "name": "Rhonda Rousey",
+        "photo": "https://postmediatorontosun.files.wordpress.com/2018/02/13x038_7804_9-e1517525019266.jpg",
         "scores": [
             "4",
             "4",
