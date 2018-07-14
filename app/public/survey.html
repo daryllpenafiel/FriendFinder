@@ -8,6 +8,7 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Tajawal:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
 </head>
 
 <body>
@@ -196,7 +197,7 @@
             </p>
             <br>
             <div class="resetbutton">
-                <input class="btn btn-primary" value="Try Again">
+                <input class="btn btn-primary" value="Try Again" id="tryAgain">
             </div>
             <br>
         </div>
@@ -210,6 +211,10 @@
 
                 $("#submitbutton").on("click", function () {
                     checkAnswers();
+                });
+
+                $("#tryAgain").on("click", function () {
+                    window.location.href='./';
                 });
 
                 var answersArray = [];
