@@ -210,7 +210,7 @@
                 $(".resultbox").hide();
 
                 $("#submitbutton").on("click", function () {
-                    checkAnswers();
+                            checkAnswers();
                 });
 
                 $("#tryAgain").on("click", function () {
@@ -239,6 +239,7 @@
                     } else {
                         answersArray.push(q1answer, q2answer, q3answer, q4answer, q5answer,
                             q6answer, q7answer, q8answer, q9answer, q10answer);
+                        compareFriends();
                     };
 
                     var newFriend = {
@@ -310,8 +311,6 @@
 
                         });
                     };
-
-                    compareFriends();
 
                 }
 
