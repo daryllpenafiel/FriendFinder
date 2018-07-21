@@ -8,7 +8,6 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Tajawal:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
@@ -16,11 +15,11 @@
     <div class="container">
 
         <div class="surveyquestions">
-            <br>
+
             <div class="form-group">
                 <label for="personName">Name:</label>
                 <input type="text" class="form-control" id="personName">
-            </div><br>
+            </div>
 
             <div class="form-group">
                 <label for="url">Enter an image URL (https please):</label>
@@ -206,20 +205,14 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
-
-
                 $(".resultbox").hide();
-
                 $("#submitbutton").on("click", function () {
-                    checkAnswers();
+                            checkAnswers();
                 });
-
                 $("#tryAgain").on("click", function () {
                     window.location.href='./';
                 });
-
                 var answersArray = [];
-
                 function checkAnswers() {
                     var friendName = $("#personName").val();
                     var friendImage = $("#imgUrl").val();
@@ -233,89 +226,65 @@
                     var q8answer = $("input[type=radio][name=q8]:checked").val();
                     var q9answer = $("input[type=radio][name=q9]:checked").val();
                     var q10answer = $("input[type=radio][name=q10]:checked").val();
-
                     if (!friendName || !friendImage || !q1answer || !q2answer || !q3answer || !q4answer || !
                         q5answer || !q6answer || !q7answer || !q8answer || !q9answer || !q10answer) {
                         alert("Please answer all fields and questions.");
                     } else {
                         answersArray.push(q1answer, q2answer, q3answer, q4answer, q5answer,
                             q6answer, q7answer, q8answer, q9answer, q10answer);
+                        compareFriends();
                     };
-
                     var newFriend = {
                         "name": friendName,
                         "photo": friendImage,
                         "scores": answersArray
                     };
-
                     console.log(newFriend);
-
-
                     //-----------------------------------------------------------------------
                     function compareFriends() {
-
                         var currentURL = window.location.origin;
-
                         $.ajax({
                                 url: currentURL + "/api/friends",
                                 method: "GET"
                             })
                             .then(function (friendsData) {
                                 var computedObjects = [];
-
                                 for (var i = 0; i < friendsData.length; i++) {
                                     var arr1 = newFriend.scores;
                                     var arr2 = friendsData[i].scores;
                                     var arr3 = [];
-
                                     for (let i = 0; i < arr1.length; i++) {
                                         arr3.push(Math.abs(arr1[i] - arr2[i]));
                                     }
-
                                     var totalDifference = arr3.reduce(function (a, b) {
                                         return a + b;
                                     }, 0);
-
                                     tmp = {
                                         'name': friendsData[i].name,
                                         'image': friendsData[i].photo,
                                         'difference': totalDifference
                                     }
-
                                     computedObjects.push(tmp);
                                 }
-
                                 console.log(computedObjects);
-
                                 //look for minimum difference in objects
                                 var res = Math.min.apply(Math, computedObjects.map(function (o) {
                                     return o.difference;
                                 }))
-
                                 var obj = computedObjects.find(function (o) {
                                     return o.difference == res;
                                 })
-
                                 console.log(obj);
-
                                 $("#matchName").text(obj.name);
                                 $("#matchImage").attr("src", obj.image);
-
                                 $(".resultbox").show();
                                 $(".surveyquestions").hide();
-
                             })
                         $.post("/api/friends", newFriend, function (data) {
-
                             console.log("New friend added to JSON");
-
                         });
                     };
-
-                    compareFriends();
-
                 }
-
             });
         </script>
 </body>
