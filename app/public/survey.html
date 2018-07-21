@@ -207,12 +207,13 @@
             $(document).ready(function () {
                 $(".resultbox").hide();
                 $("#submitbutton").on("click", function () {
-                            checkAnswers();
+                    checkAnswers();
                 });
                 $("#tryAgain").on("click", function () {
-                    window.location.href='./';
+                    window.location.href = './';
                 });
                 var answersArray = [];
+
                 function checkAnswers() {
                     var friendName = $("#personName").val();
                     var friendImage = $("#imgUrl").val();
@@ -232,14 +233,17 @@
                     } else {
                         answersArray.push(q1answer, q2answer, q3answer, q4answer, q5answer,
                             q6answer, q7answer, q8answer, q9answer, q10answer);
+                        var newFriend = {
+                            "name": friendName,
+                            "photo": friendImage,
+                            "scores": answersArray
+                        };
+                        $.post("/api/friends", newFriend, function (data) {
+                            console.log("New friend added to JSON");
+                        });
                         compareFriends();
                     };
-                    var newFriend = {
-                        "name": friendName,
-                        "photo": friendImage,
-                        "scores": answersArray
-                    };
-                    console.log(newFriend);
+
                     //-----------------------------------------------------------------------
                     function compareFriends() {
                         var currentURL = window.location.origin;
@@ -249,7 +253,7 @@
                             })
                             .then(function (friendsData) {
                                 var computedObjects = [];
-                                for (var i = 0; i < friendsData.length; i++) {
+                                for (var i = 0; i < (friendsData.length - 1); i++) {
                                     var arr1 = newFriend.scores;
                                     var arr2 = friendsData[i].scores;
                                     var arr3 = [];
@@ -280,9 +284,7 @@
                                 $(".resultbox").show();
                                 $(".surveyquestions").hide();
                             })
-                        $.post("/api/friends", newFriend, function (data) {
-                            console.log("New friend added to JSON");
-                        });
+
                     };
                 }
             });
