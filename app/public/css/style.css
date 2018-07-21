@@ -3,7 +3,7 @@ body {
     color: white;
     font-family: 'Tajawal', sans-serif;
     font-size: 18px;
-    background-color: lightskyblue;
+    background-color: cadetblue;
 }
 
 .startbox {
@@ -39,8 +39,8 @@ body {
 
 .resultbox {
     background-color: dodgerblue;
-    height: 300px;
-    width: 70%;
+    height: 700px;
+    width: 80%;
     margin: 10% auto;
     line-height: 200%;  
 }
@@ -62,4 +62,9 @@ body {
 .btn:hover {
     background-color: dodgerblue;
     color: white;
+}
+
+#matchImage {
+    height: 450px;
+    width: 600px;
 }
